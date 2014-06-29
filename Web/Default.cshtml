@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en" data-framework="angularjs">
+<head>
+    <meta charset=" utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width = device-width, minimal-ui, initial-scale = 1, user-scalable = no" />
+    <meta name="apple-mobile-web-app-title" content="AngularNet">
+    <title ng-bind="'Demo - ' + $root.page_title">Demo App</title>
+
+    <!--
+        <link rel="apple-touch-icon-precomposed" href="assets/icons/hdpi.png" />
+    -->
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+
+    <!-- HTML5 Base HREF -->
+    <base href="@VirtualPathUtility.ToAbsolute("~")/">
+
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="app/app.css">
+    }
+    else
+    {
+        <!-- Add minified css here -->
+    }
+</head>
+<body ng-class="controller" ng-app="angularnet">
+    <div class="content-area" ui-view></div>
+
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript">window.dev = true;</script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="common/services/security.js"></script>
+        <script src="common/utils/execptionHandler.js"></script>
+        <script src="common/utils/jquery.signalR-2.0.3.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/login/login.js"></script>
+        <script src="app/dashboard/dashboard.js"></script>
+    }
+    else
+    {
+        <!-- Add minified scripts here -->
+    }
+
+</body>
+</html>

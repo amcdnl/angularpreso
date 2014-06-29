@@ -1,0 +1,21 @@
+{
+  "name": "angularnet",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "angular-cookies":  "latest",
+    "angular-animate":  "latest",
+    "angular-sanitize":  "latest"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "package.json",
+    "lib",
+    "Gruntfile.js"
+  ]
+}
