@@ -1,4 +1,4 @@
-﻿var module = angular.module('dashboard', ['security.service'])
+﻿var module = angular.module('dashboard', ['security.service', 'services.signalr'])
 
 module.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('dashboard', {
@@ -20,7 +20,22 @@ module.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
-module.controller('DashboardCtrl', function ($rootScope, $scope, $location, security) {
+module.factory('DashboardModel', function ($http, $q, $location, $rootScope, Hub) {
+    var hub = new Hub('notifications', {}, ['send']);
+
+    var service = {
+        join: function() {
+            hub.send('userJoined', {
+                "12312": "Austin"
+            });
+        }
+    };
+
+    return service;
+});
+
+module.controller('DashboardCtrl', function ($rootScope, $scope, $location, security, DashboardModel) {
+    DashboardModel.join();
 
     $scope.profile = security.currentUser;
 

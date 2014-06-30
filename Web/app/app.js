@@ -3,7 +3,7 @@ var app = angular.module('angularnet', ['ngCookies', 'ui.router',
     'login', 'dashboard']);
 
 app.config(function ($urlRouterProvider, $locationProvider, $httpProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/dashboard');
     $locationProvider.html5Mode(true);
 });
             
