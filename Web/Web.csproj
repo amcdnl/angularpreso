@@ -329,9 +329,12 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\signalr\jquery.signalR.js" />
+    <Content Include="bower_components\signalr\jquery.signalR.min.js" />
     <Content Include="common\services\security.js" />
+    <Content Include="common\services\signalr.js" />
     <Content Include="common\utils\execptionHandler.js" />
-    <Content Include="common\utils\jquery.signalR-2.0.3.js" />
+    <Content Include="common\utils\interceptor.js" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Default.cshtml" />
@@ -414,6 +417,9 @@
     <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js.map" />
     <Content Include="bower_components\angular-sanitize\bower.json" />
     <Content Include="bower_components\angular-sanitize\README.md" />
+    <Content Include="bower_components\signalr\bower.json" />
+    <Content Include="bower_components\signalr\LICENSE.md" />
+    <Content Include="bower_components\signalr\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="readme.md" />
     <None Include="Web.Debug.config">
