@@ -9,7 +9,7 @@
     "angular-cookies":  "latest",
     "angular-animate":  "latest",
     "angular-sanitize":  "latest",
-    "signalr":  "latest"
+    "signalr":  "2.0.3"
   },
   "ignore": [
     "**/.*",

@@ -1,35 +1,42 @@
 ﻿var module = angular.module('services.signalr', []);
 
-    module.service('SignalR', function($rootScope) {
-        var proxy = null,
-            cb;
+module.factory('Hub', function () {
 
-        var initialize = function () {
-            //Getting the connection object
-            connection = $.hubConnection($('head>base').attr('href'));
-            connection.logging = true;
+    // create one connection for all hubs
+    var globalConnection = $.hubConnection($('head>base').attr('href'));
 
-            //Creating proxy
-            this.proxy = connection.createHubProxy('notifications');
+	return function (hubName, listeners, methods) {
 
-            //Publishing an event when server pushes a greeting message
-            this.proxy.on('broadcastMessage', function (ev, obj) {
-                $rootScope.$emit(ev, obj);
-            });
- 
-            //Starting connection
-            return cb = connection.start({ transport: ['webSockets','longPolling'] });
-        };
- 
-        var sendRequest = function (ev, obj) {
-            var self = this;
-            cb.done(function(){
-                self.proxy.invoke('send', ev, obj);
-            });
-        };
- 
-        return {
-            initialize: initialize,
-            sendRequest: sendRequest
-        }; 
-    });
+		var Hub = this;
+		Hub.connection = globalConnection;
+		Hub.proxy = Hub.connection.createHubProxy(hubName);
+		
+		Hub.on = function (event, fn) {
+			Hub.proxy.on(event, fn);
+		};
+
+		Hub.invoke = function (method, args) {
+			Hub.proxy.invoke.apply(Hub.proxy, arguments)
+		};
+
+		if (listeners) {
+			angular.forEach(listeners, function (fn, event) {
+				Hub.on(event, fn);
+			});
+		}
+
+		if (methods) {
+			angular.forEach(methods, function (method) {
+				Hub[method] = function () {
+					var args = $.makeArray(arguments);
+					args.unshift(method);
+					Hub.invoke.apply(Hub, args);
+				};
+			});
+		}
+
+        Hub.promise = Hub.connection.start();
+
+		return Hub;
+	};
+});

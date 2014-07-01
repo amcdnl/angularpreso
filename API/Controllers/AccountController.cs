@@ -44,9 +44,6 @@ namespace API.Controllers
                 var authenticationManager = ctx.Authentication;
                 authenticationManager.SignIn(id);
 
-                // init notification
-                var notifications = new Notifications();
-
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
 
@@ -57,8 +54,6 @@ namespace API.Controllers
         [HttpGet, Route("api/account/profile")]
         public HttpResponseMessage Profile()
         {
-            // add call to profile
-            var notifications = new Notifications();
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<object>(new

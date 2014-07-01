@@ -2,9 +2,6 @@
 using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
-using System.Web.Routing;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Hosting.AspNet;
 
 namespace Web
 {
