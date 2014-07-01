@@ -1,16 +1,18 @@
 ﻿# Setup
 
-## Requirements
+## Dev Requirements
 - NodeJS
 - NPM ( Node Package Manager )
 - Bower
-- Grunt
+
+## Server Requirements
 - IIS URL Rewrite 2
+- .NET 4.5.1
 
 ## Setup
 - Install Bower `npm install -g bower`
 - Install Bower Components `bower install`
 - Install Node Components `npm install`
 
-## Build
-- Run `grunt` and deploy project
+## Running
+- Create a virtual directory for `Web` project in IIS and goto that URL

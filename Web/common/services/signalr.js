@@ -1,37 +1,35 @@
 ﻿var module = angular.module('services.signalr', []);
 
-module.factory('Hub', function ($) {
-	return function (hubName, listeners, methods) {
+    module.service('SignalR', function($rootScope) {
+        var proxy = null,
+            cb;
 
-		var Hub = this;
-		Hub.connection = $.hubConnection($('head>base').attr('href'));
-		Hub.proxy = Hub.connection.createHubProxy(hubName);
-		Hub.connection.start({ transport: ['webSockets', 'longPolling'] });
+        var initialize = function () {
+            //Getting the connection object
+            connection = $.hubConnection($('head>base').attr('href'));
+            connection.logging = true;
 
-		Hub.on = function (event, fn) {
-			Hub.proxy.on(event, fn);
-		};
+            //Creating proxy
+            this.proxy = connection.createHubProxy('notifications');
 
-		Hub.invoke = function (method, args) {
-			Hub.proxy.invoke.apply(Hub.proxy, arguments)
-		};
-
-		if (listeners) {
-			angular.forEach(listeners, function (fn, event) {
-				Hub.on(event, fn);
-			});
-		}
-
-		if (methods) {
-			angular.forEach(methods, function (method) {
-				Hub[method] = function () {
-					var args = $.makeArray(arguments);
-					args.unshift(method);
-					Hub.invoke.apply(Hub, args);
-				};
-			});
-		}
-
-		return Hub;
-	};
-});
+            //Publishing an event when server pushes a greeting message
+            this.proxy.on('broadcastMessage', function (ev, obj) {
+                $rootScope.$emit(ev, obj);
+            });
+ 
+            //Starting connection
+            return cb = connection.start({ transport: ['webSockets','longPolling'] });
+        };
+ 
+        var sendRequest = function (ev, obj) {
+            var self = this;
+            cb.done(function(){
+                self.proxy.invoke('send', ev, obj);
+            });
+        };
+ 
+        return {
+            initialize: initialize,
+            sendRequest: sendRequest
+        }; 
+    });

@@ -10,7 +10,8 @@ using MongoDB.Bson;
 
 namespace API.Hubs
 {
-    [HubName("Notifications")]
+    // http://thewayofcode.wordpress.com/2012/07/24/chatr-just-another-chat-application-using-signalr/
+    //[HubName("Notifications")]
     public class Notifications : Hub
     {
         public void Send(string id, Dictionary<string, string> value)
@@ -47,12 +48,12 @@ namespace API.Hubs
             ApplicationUser user = new ApplicationUser()
             {
                 Id = ObjectId.GenerateNewId().ToString(),
-                UserName = Clients.Caller.username
+                UserName = Clients.Caller.userName
             };
 
             _repository.Users.Add(user);
             _repository.AddMapping(Context.ConnectionId, user.Id);
-            Clients.All.joins(user.Id, Clients.Caller.username, DateTime.Now);
+            Clients.All.joins(user.Id, Clients.Caller.userName, DateTime.Now);
         }
 
         public ICollection<ApplicationUser> GetConnectedUsers()

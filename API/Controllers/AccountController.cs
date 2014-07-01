@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using System.Net;
 using API.Models.Identity;
+using MongoDB.Bson;
+using API.Hubs;
 
 namespace API.Controllers
 {
@@ -30,7 +32,7 @@ namespace API.Controllers
         public HttpResponseMessage Login(LoginViewModel model)
         {
             var authenticated = model.UserName ==
-                    "admin" && model.Password == "#1Password!";
+                    "admin" && model.Password == "admin";
 
             if (authenticated)
             {
@@ -41,6 +43,9 @@ namespace API.Controllers
                 var ctx = Request.GetOwinContext();
                 var authenticationManager = ctx.Authentication;
                 authenticationManager.SignIn(id);
+
+                // init notification
+                var notifications = new Notifications();
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -53,11 +58,13 @@ namespace API.Controllers
         public HttpResponseMessage Profile()
         {
             // add call to profile
+            var notifications = new Notifications();
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<object>(new
                 {
-                    UserName = "Admin"
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    UserName = "User " + new Random().Next(1, 10)
                 }, Configuration.Formatters.JsonFormatter)
             };
         }

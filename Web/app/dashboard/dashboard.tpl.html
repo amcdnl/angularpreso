@@ -1,5 +1,12 @@
 ﻿<div class="jumbotron">
     <h1>Hello, {{profile.userName}}!</h1>
-    <p>Put content here</p>
-    <p><a class="btn btn-primary btn-lg" role="button" ng-click="logout()">Logout</a></p>
+
+    <ul>
+        <li ng-repeat="user in users">{{user.userName}}</li>
+    </ul>
+
+    <p>
+        <a class="btn btn-primary btn-lg" role="button" ng-click="join()">Join</a>
+        <a class="btn btn-primary btn-lg" role="button" ng-click="logout()">Logout</a>
+    </p>
 </div>

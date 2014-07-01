@@ -20,24 +20,21 @@ module.config(function ($stateProvider, $urlRouterProvider) {
     });
 });
 
-module.factory('DashboardModel', function ($http, $q, $location, $rootScope, Hub) {
-    var hub = new Hub('notifications', {}, ['send']);
-
-    var service = {
-        join: function() {
-            hub.send('userJoined', {
-                "12312": "Austin"
-            });
-        }
-    };
-
-    return service;
-});
-
-module.controller('DashboardCtrl', function ($rootScope, $scope, $location, security, DashboardModel) {
-    DashboardModel.join();
-
+module.controller('DashboardCtrl', function ($rootScope, $scope, $location, security, SignalR) {
     $scope.profile = security.currentUser;
+    $scope.users = [];
+
+    SignalR.initialize().done(function(){
+        SignalR.sendRequest();
+
+        var newObj = {};
+        newObj[currentUser.id] = currentUser.userName;
+        SignalR.sendRequest("joined", newObj);
+    });
+
+    $rootScope.$on("joined", function(ev, obj){
+        $scope.users.push(obj)
+    });
 
     $scope.logout = function(){
         security.logout().then(function(){
