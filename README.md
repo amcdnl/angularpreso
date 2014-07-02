@@ -8,6 +8,25 @@ Presentation on:
 - Authentication with Angular / API / and Owin
 - Real-time updating with SignalR and Angular models
 
+### Setup 
+
+#### Dev Requirements
+- NodeJS
+- NPM ( Node Package Manager )
+- Bower
+
+#### Server Requirements
+- IIS URL Rewrite 2
+- .NET 4.5.1
+
+#### Setup
+- Install Bower `npm install -g bower`
+- Install Bower Components `bower install`
+- Install Node Components `npm install`
+
+## Running
+- Create a virtual directory for `Web` project in IIS and navigate there.
+
 ### Credits
 
 - [URL Reroute Trick](http://tarkus.me/post/32121691785/angularjs-with-asp-net-mvc-4)
