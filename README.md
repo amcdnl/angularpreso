@@ -1,7 +1,7 @@
-angularpreso
+AngularJS + .NET
 ============
 
-AngularJS + .NET Presentation on
+Presentation on:
 
 - General Angular with .NET structuring and organization
 - Plumbing the Web API to your Angular
