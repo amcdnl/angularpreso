@@ -193,7 +193,6 @@
     <Content Include="app\dashboard\dashboard.tpl.html" />
     <Content Include="app\login\login.js" />
     <Content Include="app\login\login.tpl.html" />
-    <Content Include="App_Data\placeholder.txt" />
     <Content Include="assets\favicon.ico" />
     <Content Include="bower_components\angular-animate\angular-animate.js" />
     <Content Include="bower_components\angular-animate\angular-animate.min.js" />
@@ -421,7 +420,6 @@
     <Content Include="bower_components\signalr\LICENSE.md" />
     <Content Include="bower_components\signalr\README.md" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <Content Include="readme.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -467,7 +465,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50853</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/demo</IISUrl>
+          <IISUrl>http://localhost/angular-preso</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

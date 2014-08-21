@@ -8,6 +8,8 @@ Presentation on:
 - Authentication with Angular / API / and Owin
 - Real-time updating with SignalR and Angular models
 
+Visit [Slides.com](http://slides.com/austinmcdaniel/angular-net-preso#/) for the presentation.
+
 ## Setup 
 
 ### Dev Requirements
@@ -20,9 +22,9 @@ Presentation on:
 - .NET 4.5.1
 
 ### Setup
+- Install Node Components `npm install`
 - Install Bower `npm install -g bower`
 - Install Bower Components `bower install`
-- Install Node Components `npm install`
 
 ### Running
 - Create a virtual directory for `Web` project in IIS and navigate there.

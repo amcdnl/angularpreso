@@ -6,8 +6,9 @@ using System.Web.Http;
 using System.Web.Routing;
 using Microsoft.Owin;
 using Owin;
+using API;
 
-namespace API
+namespace Web
 {
     public class WebApiApplication : HttpApplication
     {
